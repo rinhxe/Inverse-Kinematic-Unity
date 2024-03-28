@@ -14,14 +14,14 @@ public class ObjectMatCtrl: MonoBehaviour {
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.name == "CharSensor") {
-            UICtrl.instance.HideButton();
+            UICtrl.instance.HideActionButton();
         }
     }
 
     void BeginEventDefine(ActionType type) {
         switch(type) {
             case ActionType.Squat: {
-                    UICtrl.instance.ShowButton(type);
+                    UICtrl.instance.ShowActionButton(type);
                     break;
                 }
             default : break;

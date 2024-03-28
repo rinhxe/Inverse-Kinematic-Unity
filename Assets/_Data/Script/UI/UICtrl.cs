@@ -8,6 +8,8 @@ public class UICtrl: MonoBehaviour {
     [SerializeField] private Button ActionButton;
     [SerializeField] private TextMeshProUGUI ActionButtonTextUGUI;
 
+    [SerializeField] private Joytick joytick;
+
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -52,14 +54,18 @@ public class UICtrl: MonoBehaviour {
     }
     #endregion
 
-    public void ShowButton(ActionType type) {
+    public void SetJoystickStatus(bool set) {
+        joytick.gameObject.SetActive(set);
+    }
+
+    public void ShowActionButton(ActionType type) {
         ActionButtonTextUGUI.text = type.ToString();
 
         ActionButton.gameObject.SetActive(true);
         
     }
 
-    public void HideButton() {
+    public void HideActionButton() {
         ActionButton.gameObject.SetActive(false);
     }
 
