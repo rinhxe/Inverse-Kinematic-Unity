@@ -46,4 +46,9 @@ public class PlayerMovement: MonoBehaviour {
         #endregion
       
     }
+
+    public void StopPlayer() {
+        movementVectoX = 0;
+        movementVectoZ = 0;
+    }
 }

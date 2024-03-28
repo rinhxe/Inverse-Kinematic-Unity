@@ -4,6 +4,8 @@ using UnityEngine;
 public class BoneIKHolder: MonoBehaviour {
 
     [SerializeField] private GameObject PrefabForSquat;
+    [SerializeField] private GameObject PrefabForEvade;
+
     List<GameObject> listPref;
 
     private void Start() {

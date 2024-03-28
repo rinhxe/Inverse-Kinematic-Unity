@@ -1,5 +1,6 @@
 public enum ActionType 
 {
         Squat,
-        None   
+        Jump,
+        Stop
 }

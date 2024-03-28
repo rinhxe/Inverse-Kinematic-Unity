@@ -1,4 +1,4 @@
 public enum ObjectType {
     YogaMat,
-    None
+    Obstacle,
 }
