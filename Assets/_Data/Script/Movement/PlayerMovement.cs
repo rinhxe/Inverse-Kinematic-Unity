@@ -1,26 +1,29 @@
 using UnityEngine;
 using UnityEngine.AI;
-
 public class PlayerMovement: MonoBehaviour {
-
+    public static PlayerMovement instance;
     public Joytick Joystick;
-
     public Animator playerAnimator;
     NavMeshAgent agent;
-
     [SerializeField] private bool isAutoMove;
-    [SerializeField, Range(-1, 1)] private float movementVectoX = 0;
-    [SerializeField, Range(-1, 1)] private float movementVectoZ = 0;
+    [SerializeField, Range(0, 1)] private float movementVectoX = 0;
+    [SerializeField, Range(0, 1)] private float movementVectoZ = 0;
     [SerializeField, Range(0, 1)] private float AnimationSpeed = 0;
 
+    public float animationSpeed {
+        get => AnimationSpeed;
+        set => AnimationSpeed = value;
+    }
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
     void Start() {
-    
         playerAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
-
-
-
     void Update() {
         #region Move
         //Move by Joytick
@@ -38,17 +41,14 @@ public class PlayerMovement: MonoBehaviour {
             playerAnimator.SetFloat("moveX", movementVectoX);
             playerAnimator.SetFloat("moveZ", movementVectoZ);
             UICtrl.instance.SetJoystickStatus(false);
-            playerAnimator.speed = AnimationSpeed;
+            playerAnimator.speed = animationSpeed;
         }
-
         //AutoMove
-
         #endregion
-      
     }
-
     public void StopPlayer() {
         movementVectoX = 0;
         movementVectoZ = 0;
     }
+    
 }

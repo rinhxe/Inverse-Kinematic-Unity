@@ -28,8 +28,8 @@ public class UICtrl: MonoBehaviour {
     #region ScriptZone    
     private void BeginSquat() {
 
-        CamCtrl.instance.TurnOffCam1();
-        CamCtrl.instance.TurnOnCam2();
+        CamCtrl.instance.SwitchToCamera(2);
+   
         InputCtrl.instance.HideJoytick();
         ActionButton.gameObject.SetActive(false);
       
@@ -41,8 +41,8 @@ public class UICtrl: MonoBehaviour {
     }
     public void EndSquat() {
 
-        CamCtrl.instance.TurnOffCam2();
-        CamCtrl.instance.TurnOnCam1();
+        CamCtrl.instance.SwitchToCamera(1);
+    
         InputCtrl.instance.ShowJoytick();
         ActionButton.gameObject.SetActive(false);
 

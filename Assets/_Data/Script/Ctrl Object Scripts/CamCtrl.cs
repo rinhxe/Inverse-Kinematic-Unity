@@ -1,11 +1,16 @@
 using Cinemachine;
+using System.ComponentModel;
 using UnityEngine;
 
 public class CamCtrl: MonoBehaviour {
     public static CamCtrl instance;
+   
+    [Description("Assign camera: " +
+        "Camera 1: Far side camera" +
+        "Camera 2: Near side camera" +
+        "Camera 3: FP camera")]
+    [SerializeField] CinemachineVirtualCamera[] cameraList;
 
-    [SerializeField] CinemachineVirtualCamera camera_1;
-    [SerializeField] CinemachineVirtualCamera camera_2;
 
 
     private void Awake() {
@@ -16,17 +21,13 @@ public class CamCtrl: MonoBehaviour {
 
     }
 
-    public void TurnOffCam1() {
-        camera_1.Priority = -10;
+    public void SwitchToCamera(int index) {
+        TurnOffAllCamera();
+        cameraList[index].Priority = 10;
     }
-    public void TurnOffCam2() {
-        camera_2.Priority = -10;
-    }
-
-    public void TurnOnCam1() {
-        camera_1.Priority = 10;
-    }
-    public void TurnOnCam2() {
-        camera_2.Priority = 10;
+    public void TurnOffAllCamera() {
+        foreach(var cam in cameraList) {
+            cam.Priority = -10;
+        }
     }
 }

@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 public class InteracableObject: MonoBehaviour {
     [SerializeField] private ObjectType objectType;
     [SerializeField] private ActionType acionType;
+    [SerializeField] private int SwitchToCamera ;
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.name == "CharSensor") {
             BeginEventDefine(acionType);
@@ -9,7 +11,7 @@ public class InteracableObject: MonoBehaviour {
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.name == "CharSensor") {
-            UICtrl.instance.HideActionButton();
+            EndEventDefine(acionType);
         }
     }
     void BeginEventDefine(ActionType type) {
@@ -19,19 +21,39 @@ public class InteracableObject: MonoBehaviour {
                     break;
                 }
             case ActionType.Jump: {
-
-                    //call jump
-
-                    //drive animator.speed
-
+                    if(!(SwitchToCamera==-1))
+                        CamCtrl.instance.SwitchToCamera(SwitchToCamera);
+                    PlayerMovement.instance.StopPlayer();
+                    PlayerMovement.instance.playerAnimator.SetTrigger("CallJump");
+                    PlayerController.instance.TurnOnRigTarget(BodyPart.Spine);
+                    StartCoroutine(WaitFor(0.3f));  
                     break;
                 }
             case ActionType.Stop: {
-                    GameManager.instance.StopPlayer();
+                    PlayerMovement.instance.StopPlayer();
                     break;
                 }
             default:
                 break;
         }
     }
+    void EndEventDefine(ActionType type) {
+        switch(type) {
+            
+            case ActionType.Stop: {
+                    
+               
+                    break;
+                    
+                }
+            default:
+                break;
+        }    
+    }
+    IEnumerator WaitFor(float t) {
+        yield return new WaitForSeconds(t);
+        PlayerController.instance.SetRigBuilder(true);
+        PlayerMovement.instance.animationSpeed = 0;
+    }
+
 }

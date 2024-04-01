@@ -12,12 +12,4 @@ public class GameManager: MonoBehaviour {
         }
     }
 
-    public void CallJumpAnimation() {
-        
-    }
-
-    public void StopPlayer() {
-        playerMovement.StopPlayer();
-    }
-
 }

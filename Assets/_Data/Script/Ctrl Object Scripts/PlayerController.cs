@@ -15,6 +15,8 @@ public class PlayerController: MonoBehaviour {
     [Tooltip("Bone IK Contraints Holder")]
     [SerializeField] BoneIKHolder boneIKHolder;
     //[SerializeField] TwoBoneIKConstraint[] boneIKConstraints;
+    [SerializeField] RigControler rigControler;
+
     [SerializeField] Animator playerAnimator;
     private void Awake() {
         if (instance == null) {
@@ -63,5 +65,8 @@ public class PlayerController: MonoBehaviour {
         float duration = 1f;
         transform.DORotate(new Vector3(0, 180, 0), duration, RotateMode.Fast);
 
+    }
+    public void TurnOnRigTarget(BodyPart part) {
+        rigControler.TurnOnTarget(part);
     }
 }
