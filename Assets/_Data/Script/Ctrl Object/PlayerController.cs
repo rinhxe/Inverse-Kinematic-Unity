@@ -1,19 +1,15 @@
 using DG.Tweening;
 using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
 public class PlayerController: MonoBehaviour {
-    
+    [Description("File for character rig solve")]
     public static PlayerController instance;
-    
-    
     [Tooltip("RigBuilder Inside PlayerObject")]
     [SerializeField] RigBuilder rigBuilder;
-    [Tooltip("RigBuilder Rig 1 Object")]
-    [SerializeField] Rig rigHandle;
-    [Tooltip("Bone IK Contraints Holder")]
-    [SerializeField] BoneIKHolder boneIKHolder;
+  
     //[SerializeField] TwoBoneIKConstraint[] boneIKConstraints;
     [SerializeField] RigControler rigControler;
 
@@ -24,17 +20,19 @@ public class PlayerController: MonoBehaviour {
         }
     }
 
-    public void SetRigStatus(bool set) {
-        rigHandle.gameObject.SetActive(set);
-        //foreach (var bone in boneIKConstraints) {
-            
-        //    bone.gameObject.SetActive(true);
-        //}
+    public void SetRigBuilder(bool set) {
+        if(!set) {
+            rigControler.SafeTurnOffRigBuild();
+        }
+        else {
+            rigBuilder.enabled = set;
+        }
+        
+    }
+    public void TurnOffTargeting() {
+        rigControler.TurnOffAlLTarget();
     }
 
-    public void SetRigBuilder(bool set) {
-        rigBuilder.enabled = set;
-    }
     public void CheckEndAnimation() {
         if(!CheckDoneProcess()) 
             return;
@@ -50,7 +48,7 @@ public class PlayerController: MonoBehaviour {
     }
     IEnumerator DelayshowUI() {
         yield return new WaitForSeconds(3f);
-        UICtrl.instance.EndSquat();
+       
 
     }
     public bool CheckDoneProcess() {

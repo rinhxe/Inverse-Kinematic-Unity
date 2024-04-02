@@ -27,6 +27,7 @@ public class InteracableObject: MonoBehaviour {
                     PlayerMovement.instance.playerAnimator.SetTrigger("CallJump");
                     PlayerController.instance.TurnOnRigTarget(BodyPart.Spine);
                     StartCoroutine(WaitFor(0.3f));  
+                    
                     break;
                 }
             case ActionType.Stop: {
@@ -53,7 +54,8 @@ public class InteracableObject: MonoBehaviour {
     IEnumerator WaitFor(float t) {
         yield return new WaitForSeconds(t);
         PlayerController.instance.SetRigBuilder(true);
-        PlayerMovement.instance.animationSpeed = 0;
+        PlayerMovement.instance.Animationspeed = 0;
+        Destroy(gameObject);
     }
-
+    
 }

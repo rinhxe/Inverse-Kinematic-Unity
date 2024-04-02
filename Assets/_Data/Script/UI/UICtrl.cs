@@ -21,38 +21,11 @@ public class UICtrl: MonoBehaviour {
     }
 
     private void OnclickActionButton() {
-        BeginSquat();
-
+       // BeginSquat();
+       //Script for begin action
     }
 
-    #region ScriptZone    
-    private void BeginSquat() {
-
-        CamCtrl.instance.SwitchToCamera(2);
-   
-        InputCtrl.instance.HideJoytick();
-        ActionButton.gameObject.SetActive(false);
-      
-        PlayerController playerController = PlayerController.instance;
-        playerController.SetRigBuilder(true);
-        playerController.SetRigStatus(true);
-        playerController.ChangePlayerFaceCamera();
-
-    }
-    public void EndSquat() {
-
-        CamCtrl.instance.SwitchToCamera(1);
-    
-        InputCtrl.instance.ShowJoytick();
-        ActionButton.gameObject.SetActive(false);
-
-        PlayerController playerController = PlayerController.instance;
-        playerController.SetRigBuilder(false);
-        playerController.SetRigStatus(false);
-
-
-    }
-    #endregion
+ 
 
     public void SetJoystickStatus(bool set) {
         joytick.gameObject.SetActive(set);
