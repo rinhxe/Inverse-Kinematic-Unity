@@ -52,6 +52,7 @@ public class ScriptCore: MonoBehaviour {
     }
     IEnumerator WaitForContinuePlayAnimation() {
         yield return new WaitForSeconds(1f);
+
         DOTween.To(() => PlayerMovement.instance.Animationspeed, x => PlayerMovement.instance.Animationspeed = x, 1, 2);
         yield return new WaitForSeconds(2f);
         PlayerMovement.instance.ResumePlayer();
