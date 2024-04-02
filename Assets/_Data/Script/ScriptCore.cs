@@ -7,7 +7,8 @@ public class ScriptCore: MonoBehaviour {
     bool isInTrueZone = false;
     private void Update() {
         if(Input.GetMouseButtonUp(0)) {
-            
+            Debug.Log("Clicked");
+            JumpAction();
         }
     }
     private void OnTriggerEnter(Collider other) {
@@ -27,7 +28,9 @@ public class ScriptCore: MonoBehaviour {
         }
     }
     
-    private void OnMouseUp() {
+  
+
+    void JumpAction() {
         if(isInTrueZone) {
             //Debug.Log("Run event");
             //Run Event here
@@ -36,19 +39,22 @@ public class ScriptCore: MonoBehaviour {
             //PlayerMovement.instance.animationSpeed.
             // turn off rigbuilder            StartCoroutine(WaitOffRB());
             PlayerController.instance.SetRigBuilder(false);
+            PlayerController.instance.TurnOffTargeting();
+
             //counteniue to walk            StartCoroutine(WaitToWalk());
 
             StartCoroutine(WaitForContinuePlayAnimation());
+
         }
         else {
             Debug.Log("Trigger");
         }
-
     }
     IEnumerator WaitForContinuePlayAnimation() {
         yield return new WaitForSeconds(1f);
         DOTween.To(() => PlayerMovement.instance.Animationspeed, x => PlayerMovement.instance.Animationspeed = x, 1, 2);
-        PlayerController.instance.TurnOffTargeting();
+        yield return new WaitForSeconds(2f);
+        PlayerMovement.instance.ResumePlayer();
     }
 
 
