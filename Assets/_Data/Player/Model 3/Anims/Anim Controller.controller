@@ -25,6 +25,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-7898587880468704600
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WallJump
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: d7ad5e12dbc1a1849b267affa14f13e2, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!206 &-6690601130772887705
 BlendTree:
   m_ObjectHideFlags: 1
@@ -57,7 +83,7 @@ BlendTree:
     m_DirectBlendParameter: moveX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: adaf3ecb4bc4bde4b92e32d980f5c3c8, type: 2}
+    m_Motion: {fileID: 7400000, guid: 86cb40d3aab55ab40be36b8b06c15221, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: -0.1, y: 0.1}
     m_TimeScale: 1
@@ -65,7 +91,7 @@ BlendTree:
     m_DirectBlendParameter: moveX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: adaf3ecb4bc4bde4b92e32d980f5c3c8, type: 2}
+    m_Motion: {fileID: 7400000, guid: 86cb40d3aab55ab40be36b8b06c15221, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 0.1, y: -0.1}
     m_TimeScale: 1
@@ -146,6 +172,28 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1107 &-3771634224244296402
+AnimatorStateMachine:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WallRun
+  m_ChildStates:
+  - serializedVersion: 1
+    m_State: {fileID: -7898587880468704600}
+    m_Position: {x: 319.74274, y: 88.31674, z: 0}
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+  m_EntryTransitions: []
+  m_StateMachineTransitions: {}
+  m_StateMachineBehaviours: []
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_EntryPosition: {x: 50, y: 170, z: 0}
+  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+  m_DefaultState: {fileID: -7898587880468704600}
 --- !u!1107 &-3613832949926923239
 AnimatorStateMachine:
   serializedVersion: 6
@@ -240,6 +288,18 @@ AnimatorController:
     m_Name: JumpLayer
     m_StateMachine: {fileID: -3613832949926923239}
     m_Mask: {fileID: 31900000, guid: 8c11ddc03ff8d924fa8e75a6e57cac20, type: 2}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 0
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
+    m_Name: WallRun
+    m_StateMachine: {fileID: -3771634224244296402}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
